@@ -1,0 +1,120 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const HeaderUI = styled.header`
+  display: flex;
+  width: 100%;
+  height: 70px;
+  background-color: var(--black);
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const HeaderTitle = styled.div`
+  display: flex;
+  width: 60%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: 588px) {
+    width: 100%;
+    margin-left: 15px;
+  }
+`;
+
+const HeaderTitleText = styled.h1`
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: var(--primary-blue-color);
+  @media only screen and (max-width: 588px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const HeaderNavBar = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 30px;
+  position: sticky;
+  @media only screen and (max-width: 588px) {
+    margin-right: 0px;
+  }
+`;
+
+const NavBarMenu = styled.div`
+  width: 80px;
+  height: 45px;
+  background-image: url('../../assets/images/menu-burguer-removebg-preview.png');
+  background-position: center;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  &:hover {
+    height: auto;
+    & div {
+      display: flex;
+      width: auto;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 180px;
+    }
+  }
+`;
+
+const NavBarContainerLinks = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (max-width: 588px) {
+    display: none;
+  }
+`;
+
+const HeaderNavBarLinks = styled.a`
+  color: var(--secondary-blue-color);
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 5px;
+  cursor: pointer;
+`;
+
+const Header = () => {
+  const [viewWidth, setViewWidth] = useState(window.innerWidth);
+  window.addEventListener('resize', () => {
+    setViewWidth(window.innerWidth);
+  });
+  return (
+    <HeaderUI>
+      <HeaderTitle>
+        <HeaderTitleText>Lambda Exchange</HeaderTitleText>
+      </HeaderTitle>
+      <HeaderNavBar>
+        {viewWidth <= 588 && (
+          <NavBarMenu>
+            <NavBarContainerLinks>
+              <HeaderNavBarLinks>Home</HeaderNavBarLinks>
+              <HeaderNavBarLinks>Cryptos</HeaderNavBarLinks>
+              <HeaderNavBarLinks>Exchange</HeaderNavBarLinks>
+              <HeaderNavBarLinks>API</HeaderNavBarLinks>
+            </NavBarContainerLinks>
+          </NavBarMenu>
+        )}
+        {viewWidth > 588 && (
+          <NavBarContainerLinks>
+            <HeaderNavBarLinks>Home</HeaderNavBarLinks>
+            <HeaderNavBarLinks>Cryptos</HeaderNavBarLinks>
+            <HeaderNavBarLinks>Exchange</HeaderNavBarLinks>
+            <HeaderNavBarLinks>API</HeaderNavBarLinks>
+          </NavBarContainerLinks>
+        )}
+      </HeaderNavBar>
+    </HeaderUI>
+  );
+};
+
+export { Header };

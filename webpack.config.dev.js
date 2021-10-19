@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index',
@@ -20,35 +21,35 @@ module.exports = {
   module: {
     rules: [
       {
-	test: /\.(js|jsx)$/,
-	exclude: /node_modules/,
-	use: {
-	  loader: 'babel-loader',
-	},
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
 
       {
-	test: /\.html$/,
-	use: [
-	  {
-	    loader: 'html-loader',
-	  },
-	],
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
       },
 
       {
-	test: /\.css$/,
-	use: [
-	  {
-	    loader: MiniCssExtractPlugin.loader,
-	  },
-	  'css-loader',
-	],
+        test: /\.css$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
       },
 
       {
-	test: /\.png|.jpg?e|.svg/,
-	type: 'asset/resource',
+        test: /\.png|.jpg?e|.svg/,
+        type: 'asset/resource',
       },
     ],
   },
@@ -60,6 +61,14 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/[name].css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src', 'assets/images'),
+          to: 'assets/images',
+        },
+      ],
     }),
   ],
 
