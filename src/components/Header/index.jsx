@@ -37,10 +37,10 @@ const HeaderNavBar = styled.nav`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-right: 30px;
+  margin-right: 50px;
   position: sticky;
-  @media only screen and (max-width: 588px) {
-    margin-right: 0px;
+  @media only screen and (max-width: 650px) {
+    margin-right: 5px;
   }
 `;
 
