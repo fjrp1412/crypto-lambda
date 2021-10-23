@@ -3,7 +3,7 @@
   --black: #000;
   --primary-blue-color: #02A9F7;
   --secondary-blue-color: #89D6FB;
-  --card-bg-color-dark-theme: linear-gradient(to bottom, #262626, rgba(47,58,45,0.4));
+  --card-positive-bg-color-dark-theme: linear-gradient(#262626, #2F3A2D 40% );
   --card-border-green: #4D894F;
   --card-border-red: #BC2929;
   --positive-tendency-green: #20EC29;
@@ -30,7 +30,10 @@ html {
   background-color: var(--dark-theme-crypto);
 }
 
-#App {
+#app {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+  align-items: center;
 }

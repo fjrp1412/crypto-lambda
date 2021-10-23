@@ -21,35 +21,35 @@ module.exports = {
   module: {
     rules: [
       {
-	test: /\.(js|jsx)$/,
-	exclude: /node_modules/,
-	use: {
-	  loader: 'babel-loader',
-	},
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
 
       {
-	test: /\.html$/,
-	use: [
-	  {
-	    loader: 'html-loader',
-	  },
-	],
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
       },
 
       {
-	test: /\.css$/,
-	use: [
-	  {
-	    loader: MiniCssExtractPlugin.loader,
-	  },
-	  'css-loader',
-	],
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
       },
 
       {
-	test: /\.png|.jpg?e|.svg/,
-	type: 'asset/resource',
+        test: /\.png|.jpg?e|.svg/,
+        type: 'asset/resource',
       },
     ],
   },
@@ -62,7 +62,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'assets/[name].css',
     }),
-
   ],
   optimization: {
     minimize: true,

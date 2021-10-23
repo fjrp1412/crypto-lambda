@@ -27,8 +27,9 @@ const HeaderTitleText = styled.h1`
   font-size: 2.8rem;
   font-weight: bold;
   color: var(--primary-blue-color);
-  @media only screen and (max-width: 588px) {
-    font-size: 2.5rem;
+
+  @media only screen and (max-width: 500px) {
+    font-size: 2rem;
   }
 `;
 
