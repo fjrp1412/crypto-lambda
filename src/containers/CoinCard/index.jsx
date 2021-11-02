@@ -1,10 +1,9 @@
 import React from 'react';
-import { getData } from '../../utils/getData';
+import numeral from 'numeral';
 import {
   CoinCardUI,
   CoinCardDetailContainer,
   CoinCardText,
-  CoinChartContainer,
   CoinCardName,
   CoinCardTendencyText,
   CoinCardRank,
@@ -13,33 +12,37 @@ import {
   CoinCardSecondaryText,
 } from './CoinCardUI';
 
-const CoinCard = () => {
+const CoinCard = ({ coin, symbol, rank, price, tendency, volumen }) => {
+  price = numeral(price).format('$ 0.000a');
+  tendency = numeral(tendency / 100).format('% 0.000');
+  volumen = numeral(volumen).format('0.000a');
   return (
     <CoinCardUI>
       <CoinCardDetailContainer>
         <CoinCardName>
-          <CoinCardText>Bitcoin (BTC)</CoinCardText>
+          <CoinCardText>{coin}</CoinCardText>
+
+          <CoinCardText>{`(${symbol})`}</CoinCardText>
         </CoinCardName>
 
         <CoinCardRank>
-          <CoinCardTendencyText className="rank">#1</CoinCardTendencyText>
+          <CoinCardTendencyText className="rank">#{rank}</CoinCardTendencyText>
         </CoinCardRank>
 
         <CoinCardPrice>
           <CoinCardText>
-            61462.2
-            <CoinCardTendencyText>+1.15%</CoinCardTendencyText>
+            {price}
+            <CoinCardTendencyText>{tendency}</CoinCardTendencyText>
           </CoinCardText>
         </CoinCardPrice>
 
         <CoinCardVolumen>
           <CoinCardSecondaryText>
             Volumen
-            <CoinCardText> 16.27B</CoinCardText>
+            <CoinCardText> {volumen}</CoinCardText>
           </CoinCardSecondaryText>
         </CoinCardVolumen>
       </CoinCardDetailContainer>
-      <CoinChartContainer />
     </CoinCardUI>
   );
 };
