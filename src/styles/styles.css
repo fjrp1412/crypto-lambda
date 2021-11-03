@@ -4,6 +4,8 @@
   --primary-blue-color: #02A9F7;
   --secondary-blue-color: #89D6FB;
   --card-positive-bg-color-dark-theme: linear-gradient(#262626, #2F3A2D 40% );
+  --card-negative-bg-color-dark-theme: linear-gradient(to bottom,rgba(237, 85, 85, 0.10), rgba(248, 111, 111, 0.35));
+  --card-background-color: linear-gradient(to bottom, #262626, rgba(47,58,45,0.4));
   --card-border-green: #4D894F;
   --card-border-red: #BC2929;
   --positive-tendency-green: #20EC29;
@@ -37,3 +39,31 @@ html {
   height: 100%;
   align-items: center;
 }
+
+@keyframes tendencyDown {
+  from {background: var(--negative-tendency-red)};
+  to {background: var(--card-background-color)};
+}
+
+@keyframes tendencyUp {
+  from {background: var(--positive-tendency-green)};
+  to {background: var(--card-background-color)};
+}
+
+
+
+.up {
+  animation-name: tendencyUp;
+  animation-duration: 2s;
+  animation-delay: 5s;
+  animation-iteration-count: 1;
+}
+
+.down {
+  animation-name: tendencyDown;
+  animation-duration: 2s;
+  animation-delay: 5s;
+  animation-iteration-count: 1;
+}
+
+

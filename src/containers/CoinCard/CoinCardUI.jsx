@@ -5,7 +5,7 @@ const CoinCardUI = styled.div`
   height: 150px;
   display: flex;
   flex-direction: column;
-  background: var(--card-positive-bg-color-dark-theme);
+  outline: solid 1px #dedede;
 `;
 
 const CoinCardDetailContainer = styled.div`
@@ -20,30 +20,30 @@ const CoinCardDetailContainer = styled.div`
 `;
 
 const CoinCardText = styled.span`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: var(--primary-font-color);
 
   @media screen and (max-width: 600px) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 `;
 const CoinCardSecondaryText = styled.span`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: var(--secondary-font-color);
   @media screen and (max-width: 600px) {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 `;
 
 const CoinCardTendencyText = styled.span`
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   font-weight: bold;
-  color: var(--positive-tendency-green);
   margin: 10px;
+  color: ${props => props.theme};
   @media screen and (max-width: 600px) {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 `;
 
