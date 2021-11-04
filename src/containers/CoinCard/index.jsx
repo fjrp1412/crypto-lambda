@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import numeral from 'numeral';
 import {
   CoinCardUI,
@@ -26,21 +26,29 @@ const CoinCard = ({
   const [priceText, setPriceText] = useState(
     numeral(staticPrice).format('$ 0.000a')
   );
+  const coinWs = useRef(null);
   tendency = numeral(tendency / 100).format('% 0.000');
   volumen = numeral(volumen).format('0.000a');
 
-  const priceCoinWs = new WebSocket(`wss://ws.coincap.io/prices?assets=${id}`);
+  useEffect(() => {
+    coinWs.current = new WebSocket(`wss://ws.coincap.io/prices?assets=${id}`);
+    const currentWs = coinWs.current;
+    return () => {
+      currentWs.close();
+    };
+  }, []);
 
-  priceCoinWs.onmessage = message => {
-    const data = JSON.parse(message.data);
-    setTendency(data[id] > price ? 'up' : 'down');
-    setPrice(data[id]);
-    setPriceText(numeral(price).format('$ 0.000a'));
-    priceCoinWs.close();
-  };
+  useEffect(() => {
+    coinWs.current.onmessage = message => {
+      const data = JSON.parse(message.data);
+      setTendency(data[id] > price ? 'tendencyUp' : 'tendencyDown');
+      setPrice(data[id]);
+      setPriceText(numeral(price).format('$ 0.000a'));
+    };
+  });
 
   return (
-    <CoinCardUI className={tendencyRate}>
+    <CoinCardUI theme={tendencyRate}>
       <CoinCardDetailContainer>
         <CoinCardName>
           <CoinCardText>{coin}</CoinCardText>

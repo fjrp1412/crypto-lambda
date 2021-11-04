@@ -1,6 +1,7 @@
 const { API_KEY } = process.env;
 const getCoinData = async ({ limit = 2000 }) => {
   const requestOptions = {
+    mode: 'cors',
     method: 'GET',
     'Accept-Encoding': 'gzip',
     Authorization: `Bearer ${API_KEY}`,

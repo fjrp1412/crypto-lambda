@@ -6,6 +6,9 @@ const CoinCardUI = styled.div`
   display: flex;
   flex-direction: column;
   outline: solid 1px #dedede;
+  animation-name: ${props => props.theme};
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
 `;
 
 const CoinCardDetailContainer = styled.div`

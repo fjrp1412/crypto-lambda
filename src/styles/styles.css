@@ -49,21 +49,3 @@ html {
   from {background: var(--positive-tendency-green)};
   to {background: var(--card-background-color)};
 }
-
-
-
-.up {
-  animation-name: tendencyUp;
-  animation-duration: 2s;
-  animation-delay: 5s;
-  animation-iteration-count: 1;
-}
-
-.down {
-  animation-name: tendencyDown;
-  animation-duration: 2s;
-  animation-delay: 5s;
-  animation-iteration-count: 1;
-}
-
-
