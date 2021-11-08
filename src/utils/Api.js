@@ -4,6 +4,7 @@ const REQUEST_OPTIONS = {
   method: 'GET',
   'Accept-Encoding': 'gzip',
   Authorization: `Bearer ${API_KEY}`,
+  'Access-Control-Allow-Origin': '*',
 };
 
 const getCoinsData = async ({ limit = 2000 }) => {
@@ -16,7 +17,6 @@ const getCoinsData = async ({ limit = 2000 }) => {
 };
 
 const getCoinData = async ({ id }) => {
-  console.log(id);
   const response = await fetch(
     `https://api.coincap.io/v2/assets/${id}`,
     REQUEST_OPTIONS

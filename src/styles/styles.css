@@ -53,3 +53,11 @@ a {
   from {background: var(--positive-tendency-green)};
   to {background: var(--card-background-color)};
 }
+
+.tendencyUp {
+  color: var(--positive-tendency-green);
+}
+
+.tendencyDown {
+  color: var(--negative-tendency-red);
+}

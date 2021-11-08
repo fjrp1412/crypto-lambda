@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderUI = styled.header`
@@ -92,13 +93,14 @@ const Header = () => {
   return (
     <HeaderUI>
       <HeaderTitle>
-        <HeaderTitleText>Lambda Exchange</HeaderTitleText>
+        <Link to="/">
+          <HeaderTitleText>Lambda Exchange</HeaderTitleText>
+        </Link>
       </HeaderTitle>
       <HeaderNavBar>
         {viewWidth <= 588 && (
           <NavBarMenu>
             <NavBarContainerLinks>
-              <HeaderNavBarLinks>Home</HeaderNavBarLinks>
               <HeaderNavBarLinks>Cryptos</HeaderNavBarLinks>
               <HeaderNavBarLinks>Exchange</HeaderNavBarLinks>
               <HeaderNavBarLinks>API</HeaderNavBarLinks>
@@ -107,7 +109,6 @@ const Header = () => {
         )}
         {viewWidth > 588 && (
           <NavBarContainerLinks>
-            <HeaderNavBarLinks>Home</HeaderNavBarLinks>
             <HeaderNavBarLinks>Cryptos</HeaderNavBarLinks>
             <HeaderNavBarLinks>Exchange</HeaderNavBarLinks>
             <HeaderNavBarLinks>API</HeaderNavBarLinks>
