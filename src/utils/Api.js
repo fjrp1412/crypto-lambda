@@ -1,17 +1,29 @@
 const { API_KEY } = process.env;
-const getCoinData = async ({ limit = 2000 }) => {
-  const requestOptions = {
-    mode: 'cors',
-    method: 'GET',
-    'Accept-Encoding': 'gzip',
-    Authorization: `Bearer ${API_KEY}`,
-  };
+const REQUEST_OPTIONS = {
+  mode: 'cors',
+  method: 'GET',
+  'Accept-Encoding': 'gzip',
+  Authorization: `Bearer ${API_KEY}`,
+};
+
+const getCoinsData = async ({ limit = 2000 }) => {
   const response = await fetch(
     `https://api.coincap.io/v2/assets?limit=${limit}`,
-    requestOptions
+    REQUEST_OPTIONS
   );
   const data = await response.json();
   return data.data;
 };
 
-export { getCoinData, API_KEY };
+const getCoinData = async ({ id }) => {
+  console.log(id);
+  const response = await fetch(
+    `https://api.coincap.io/v2/assets/${id}`,
+    REQUEST_OPTIONS
+  );
+
+  const data = await response.json();
+  return data.data;
+};
+
+export { getCoinsData, getCoinData, API_KEY };

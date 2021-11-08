@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Title } from '../Title';
 import { CoinCard } from '../../containers/CoinCard';
-import { getCoinData } from '../../utils/Api';
 
-const HomeUI = styled.section`
+const CoinCardLayotUI = styled.section`
   display: grid;
   width: 100%;
   grid-template-columns: repeat(4, minmax(300px, 100px));
@@ -30,18 +29,17 @@ const HomeUI = styled.section`
   }
 `;
 
-const Home = () => {
-  const [coins, setCoins] = useState([]);
-
-  useEffect(async () => {
-    setCoins(await getCoinData({ limit: 40 }));
-  }, []);
-
+const CoinCardLayout = ({ coins }) => {
   return (
-    <>
-      <Title text="Top 40 Crypto Assets" />
-      <HomeUI>
-        {coins.map(coin => (
+    <CoinCardLayotUI>
+      {coins.map(coin => (
+        <Link
+          to={{
+            pathname: `/detail/${coin.id}`,
+            state: { id: coin.id },
+          }}
+          key={coin.id}
+        >
           <CoinCard
             coin={coin.name}
             rank={coin.rank}
@@ -49,13 +47,12 @@ const Home = () => {
             staticPrice={coin.priceUsd}
             tendency={coin.changePercent24Hr}
             volumen={coin.volumeUsd24Hr}
-            key={coin.id}
             id={coin.id}
           />
-        ))}
-      </HomeUI>
-    </>
+        </Link>
+      ))}
+    </CoinCardLayotUI>
   );
 };
 
-export { Home };
+export { CoinCardLayout };

@@ -32,6 +32,10 @@ html {
   background-color: var(--dark-theme-crypto);
 }
 
+a {
+  text-decoration: none;
+}
+
 #app {
   display: flex;
   flex-direction: column;
