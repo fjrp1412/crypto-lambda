@@ -26,4 +26,14 @@ const getCoinData = async ({ id }) => {
   return data.data;
 };
 
-export { getCoinsData, getCoinData, API_KEY };
+const getCoinHistory = async ({ id, interval = 'd1', start, end }) => {
+  const response = await fetch(
+    `https://api.coincap.io/v2/assets/${id}/history?interval=${interval}&start=${start}&end=${end}`
+  );
+
+  const data = await response.json();
+
+  return data.data;
+};
+
+export { getCoinsData, getCoinData, getCoinHistory };

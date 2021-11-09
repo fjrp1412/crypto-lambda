@@ -61,3 +61,7 @@ a {
 .tendencyDown {
   color: var(--negative-tendency-red);
 }
+
+.container {
+  width: 100%;
+}
