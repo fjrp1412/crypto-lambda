@@ -36,7 +36,7 @@ const CoinCardLayout = ({ coins }) => {
         <Link
           to={{
             pathname: `/detail/${coin.id}`,
-            state: { id: coin.id },
+            state: { id: coin.id, symbol: coin.symbol },
           }}
           key={coin.id}
         >

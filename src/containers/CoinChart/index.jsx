@@ -3,9 +3,9 @@ import { CoinChartUI } from './CoinChartUI';
 import { getCoinHistory } from '../../utils/Api';
 import { TimeConverter } from '../../utils/Dates';
 
-const CoinChart = ({ id }) => {
+const CoinChart = ({ id, history, setHistory }) => {
   const [data, setData] = useState([]);
-  const [dateRange, setDateRange] = useState(365);
+  const [dateRange, setDateRange] = useState(1);
 
   const handleChangeDateRange = range => {
     switch (range) {
@@ -39,6 +39,10 @@ const CoinChart = ({ id }) => {
     }
   };
 
+  useEffect(() => {
+    setData(history);
+  }, [history]);
+
   useEffect(async () => {
     let interval;
 
@@ -59,13 +63,14 @@ const CoinChart = ({ id }) => {
     const end = TimeConverter.millisecondsToDays(Date.now());
     const start = end - dateRange;
 
-    const history = await getCoinHistory({
-      id,
-      end: TimeConverter.daysToMilliseconds(end),
-      start: TimeConverter.daysToMilliseconds(start),
-      interval,
-    });
-    setData(history);
+    setHistory(
+      await getCoinHistory({
+        id,
+        end: TimeConverter.daysToMilliseconds(end),
+        start: TimeConverter.daysToMilliseconds(start),
+        interval,
+      })
+    );
   }, [dateRange]);
 
   return <CoinChartUI data={data} handleClick={handleChangeDateRange} />;

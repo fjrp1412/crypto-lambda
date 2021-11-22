@@ -74,11 +74,11 @@ const CoinDetailSection = styled.div`
   }
 `;
 
-const CoinInfoUI = ({ name, price, symbol = '', supply, volumen, change }) => {
+const CoinInfoUI = ({ name, average, symbol = '', high, low, change }) => {
   const [image, setImage] = useState('');
-  price = numeral(price).format('$ 0.000a');
-  supply = numeral(supply).format('0.000a');
-  volumen = numeral(volumen).format('0.000a');
+  average = numeral(average).format('$ 0.000a');
+  high = numeral(high).format('0.000a');
+  low = numeral(low).format('0.000a');
   change = numeral(change / 100).format('% 0.0000');
 
   useEffect(() => {
@@ -99,23 +99,23 @@ const CoinInfoUI = ({ name, price, symbol = '', supply, volumen, change }) => {
       <CoinDetailSection>
         <CoinText>
           {' '}
-          <CoinSecondaryText>Supply</CoinSecondaryText> {supply}
+          <CoinSecondaryText>High</CoinSecondaryText> {high}
         </CoinText>
 
         <CoinText>
           {' '}
-          <CoinSecondaryText>Volumen(24hr)</CoinSecondaryText> {volumen}
+          <CoinSecondaryText>Low</CoinSecondaryText> {low}
         </CoinText>
       </CoinDetailSection>
 
       <CoinDetailSection>
         <CoinText>
           {' '}
-          <CoinSecondaryText>Price</CoinSecondaryText> {price}
+          <CoinSecondaryText>Average</CoinSecondaryText> {average}
         </CoinText>
         <CoinTendencyText tendency={change.includes('-')}>
           {' '}
-          <CoinSecondaryText>Change (24hr)</CoinSecondaryText> {change}
+          <CoinSecondaryText>Change</CoinSecondaryText> {change}
         </CoinTendencyText>
       </CoinDetailSection>
     </CoinInfo>
