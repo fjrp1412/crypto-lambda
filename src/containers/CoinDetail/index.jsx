@@ -52,7 +52,12 @@ const CardDetail = () => {
       </div>
 
       <div className="container">
-        <CoinChart id={id} history={history} setHistory={setHistory} />
+        <CoinChart
+          id={id}
+          history={history}
+          setHistory={setHistory}
+          change={change}
+        />
       </div>
     </>
   );

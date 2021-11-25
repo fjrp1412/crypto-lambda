@@ -3,7 +3,7 @@ import { CoinChartUI } from './CoinChartUI';
 import { getCoinHistory } from '../../utils/Api';
 import { TimeConverter } from '../../utils/Dates';
 
-const CoinChart = ({ id, history, setHistory }) => {
+const CoinChart = ({ id, history, setHistory, change }) => {
   const [data, setData] = useState([]);
   const [dateRange, setDateRange] = useState(1);
 
@@ -69,11 +69,18 @@ const CoinChart = ({ id, history, setHistory }) => {
         end: TimeConverter.daysToMilliseconds(end),
         start: TimeConverter.daysToMilliseconds(start),
         interval,
+        change,
       })
     );
   }, [dateRange]);
 
-  return <CoinChartUI data={data} handleClick={handleChangeDateRange} />;
+  return (
+    <CoinChartUI
+      data={data}
+      handleClick={handleChangeDateRange}
+      change={change}
+    />
+  );
 };
 
 export { CoinChart };
