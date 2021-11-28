@@ -5,6 +5,7 @@ const TableHead = styled.thead`
   color: white;
 
   & tr th button {
+    text-align: start;
     font-size: 1.8rem;
     width: 100%;
     color: white;
@@ -29,20 +30,24 @@ const TableBody = styled.tbody`
 `;
 
 const Table = styled.table`
-  width: 100%;
+  width: 80%;
+  min-width: 650px;
   background-color: #024e58;
-  margin-top: 50px;
+  margin: 50px auto 0px;
   border-collapse: collapse;
 
-  & tr td {
+  & thead tr td {
     color: white;
     font-size: 1.8rem;
-    text-align: center;
+  }
+
+  & tbody tr td {
+    font-size: 1.4rem;
   }
 `;
 
 const TableItem = styled.tr`
-  border: 5px solid black;
+  border: 8px solid black;
   border-right: 0px;
   border-left: 0px;
   margin: 5px;

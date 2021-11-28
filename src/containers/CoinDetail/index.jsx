@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
-import { getCoinHistory } from '../../utils/Api';
+import { getCoinHistory, getMarketsCoinData } from '../../utils/Api';
 import { TimeConverter } from '../../utils/Dates';
 import { CoinDetailUI } from './CoinDetailUI';
 
 const CardDetail = () => {
   const [history, setHistory] = useState([]);
+  const [markets, setMarkets] = useState([]);
   const location = useLocation();
   const { id, symbol } = location.state;
   const [high, setHigh] = useState();
@@ -24,6 +25,8 @@ const CardDetail = () => {
         interval: 'm1',
       })
     );
+
+    setMarkets(await getMarketsCoinData({ id }));
   }, []);
 
   useEffect(() => {
@@ -47,6 +50,7 @@ const CardDetail = () => {
       average={average}
       history={history}
       setHistory={setHistory}
+      markets={markets}
     />
   );
 };

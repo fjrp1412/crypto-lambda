@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import numeral from 'numeral';
 import { CoinInfoUI } from './CoinInfolUI';
 import { CoinChart } from '../CoinChart';
 
@@ -18,6 +19,7 @@ const CoinDetailUI = ({
   average,
   history,
   setHistory,
+  markets,
 }) => {
   return (
     <>
@@ -46,18 +48,14 @@ const CoinDetailUI = ({
           <TableHead>
             <tr>
               <th>
-                <button type="button">Rank</button>
+                <button type="button">Exchange</button>
               </th>
               <th>
-                <button type="button">Name</button>
-              </th>
-
-              <th>
-                <button type="button">Trading Pairs</button>
+                <button type="button">Pair</button>
               </th>
 
               <th>
-                <button type="button">Top Pairs</button>
+                <button type="button">Price</button>
               </th>
 
               <th>
@@ -65,19 +63,29 @@ const CoinDetailUI = ({
               </th>
 
               <th>
-                <button type="button">Total(%)</button>
+                <button type="button">Volume(%)</button>
               </th>
             </tr>
           </TableHead>
           <TableBody>
-            <TableItem>
-              <td>1</td>
-              <td>Binance</td>
-              <td>965</td>
-              <td>BTC/USDT</td>
-              <td>$19.45b</td>
-              <td>30.69</td>
-            </TableItem>
+            {markets.map((market, index) => {
+              market.id = index;
+              return (
+                <TableItem key={market.id}>
+                  <td>{market.exchangeId}</td>
+                  <td>
+                    {market.baseSymbol}/{market.quoteSymbol}
+                  </td>
+                  <td>{numeral(market.priceUsd).format('$ 0.000a')}</td>
+                  <td>{numeral(market.volumeUsd24Hr).format('$ 0.000a')}</td>
+                  <td>
+                    {numeral(market.percentExchangeVolume / 100).format(
+                      '% 0.0000'
+                    )}
+                  </td>
+                </TableItem>
+              );
+            })}
           </TableBody>
         </Table>
       </div>
