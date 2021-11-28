@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
-import { getCoinData, getCoinHistory } from '../../utils/Api';
+import { getCoinHistory } from '../../utils/Api';
 import { TimeConverter } from '../../utils/Dates';
-import { CoinInfoUI } from './CoinInfolUI';
-import { CoinChart } from '../CoinChart';
+import { CoinDetailUI } from './CoinDetailUI';
 
 const CardDetail = () => {
   const [history, setHistory] = useState([]);
@@ -39,27 +38,16 @@ const CardDetail = () => {
   }, [history]);
 
   return (
-    <>
-      <div className="container">
-        <CoinInfoUI
-          name={id}
-          symbol={symbol}
-          change={change}
-          high={high}
-          low={low}
-          average={average}
-        />
-      </div>
-
-      <div className="container">
-        <CoinChart
-          id={id}
-          history={history}
-          setHistory={setHistory}
-          change={change}
-        />
-      </div>
-    </>
+    <CoinDetailUI
+      id={id}
+      symbol={symbol}
+      change={change}
+      high={high}
+      low={low}
+      average={average}
+      history={history}
+      setHistory={setHistory}
+    />
   );
 };
 
