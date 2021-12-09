@@ -5,8 +5,8 @@ const TableHead = styled.thead`
   color: white;
 
   & tr th button {
-    text-align: start;
-    font-size: 1.8rem;
+    text-align: center;
+    font-size: 1.4rem;
     width: 100%;
     color: white;
     font-weight: bolder;
@@ -17,6 +17,10 @@ const TableHead = styled.thead`
     cursor: pointer;
     overflow: hidden;
     outline: none;
+  }
+
+  & tr th {
+    padding: 5px 10px;
   }
 `;
 
@@ -38,11 +42,12 @@ const Table = styled.table`
 
   & thead tr td {
     color: white;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
   }
 
   & tbody tr td {
     font-size: 1.4rem;
+    text-align: center;
   }
 `;
 

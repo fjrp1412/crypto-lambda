@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import numeral from 'numeral';
 import { CoinInfoUI } from './CoinInfolUI';
 import { CoinChart } from '../CoinChart';
+import { useSortableData } from '../../hooks/useSortTable';
 
 import {
   Table,
@@ -21,39 +22,16 @@ const CoinDetailUI = ({
   setHistory,
   markets,
 }) => {
-  const [sortConfig, setSortConfig] = useState({});
-  const [sortedMarkets, setSortMarkets] = useState([]);
-
+  const [marketsWithId, setMarketsWithId] = useState([]);
   useEffect(() => {
-    setSortMarkets(markets.map((market, index) => ({ ...market, id: index })));
-  }, [markets]);
-
-  const sortItems = () => {
-    setSortMarkets(
-      sortedMarkets.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? -1 : 1;
-        }
-
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === 'descending' ? 1 : -1;
-        }
-
-        return 0;
-      })
+    setMarketsWithId(
+      markets.map((market, index) => ({
+        ...market,
+        id: index,
+      }))
     );
-  };
-
-  const requestSort = key => {
-    let direction = 'ascending';
-
-    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending';
-    }
-    setSortConfig({ key, direction });
-    sortItems();
-    console.log(sortConfig);
-  };
+  }, [markets]);
+  const { items, requestSort } = useSortableData([...marketsWithId]);
 
   return (
     <>
@@ -87,24 +65,41 @@ const CoinDetailUI = ({
                 </button>
               </th>
               <th>
-                <button type="button">Pair</button>
+                <button
+                  type="button"
+                  onClick={() => requestSort('quoteSymbol')}
+                >
+                  Pair
+                </button>
               </th>
 
               <th>
-                <button type="button">Price</button>
+                <button type="button" onClick={() => requestSort('priceUsd')}>
+                  Price
+                </button>
               </th>
 
               <th>
-                <button type="button">Volume(24Hr)</button>
+                <button
+                  type="button"
+                  onClick={() => requestSort('volumeUsd24Hr')}
+                >
+                  Volume(24Hr)
+                </button>
               </th>
 
               <th>
-                <button type="button">Volume(%)</button>
+                <button
+                  type="button"
+                  onClick={() => requestSort('percentExchangeVolume')}
+                >
+                  Volume(%)
+                </button>
               </th>
             </tr>
           </TableHead>
           <TableBody>
-            {sortedMarkets.map(market => (
+            {items.map(market => (
               <TableItem key={market.id}>
                 <td>{market.exchangeId}</td>
                 <td>

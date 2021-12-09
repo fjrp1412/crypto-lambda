@@ -76,7 +76,7 @@ const NavBarContainerLinks = styled.div`
   }
 `;
 
-const HeaderNavBarLinks = styled.a`
+const HeaderNavBarLinks = styled.span`
   color: var(--secondary-blue-color);
   font-size: 1.8rem;
   font-weight: bold;
@@ -94,23 +94,34 @@ const Header = () => {
     <HeaderUI>
       <HeaderTitle>
         <Link to="/">
-          <HeaderTitleText>Lambda Exchange</HeaderTitleText>
+          <HeaderTitleText>Lambda Watch</HeaderTitleText>
         </Link>
       </HeaderTitle>
       <HeaderNavBar>
         {viewWidth <= 588 && (
           <NavBarMenu>
             <NavBarContainerLinks>
-              <HeaderNavBarLinks>Cryptos</HeaderNavBarLinks>
-              <HeaderNavBarLinks>Exchange</HeaderNavBarLinks>
+              <Link to="/">
+                <HeaderNavBarLinks>Cryptos</HeaderNavBarLinks>
+              </Link>
+
+              <Link to="/exchanges">
+                <HeaderNavBarLinks>Exchange</HeaderNavBarLinks>
+              </Link>
+
               <HeaderNavBarLinks>API</HeaderNavBarLinks>
             </NavBarContainerLinks>
           </NavBarMenu>
         )}
         {viewWidth > 588 && (
           <NavBarContainerLinks>
-            <HeaderNavBarLinks>Cryptos</HeaderNavBarLinks>
-            <HeaderNavBarLinks>Exchange</HeaderNavBarLinks>
+            <Link to="/">
+              <HeaderNavBarLinks>Cryptos</HeaderNavBarLinks>
+            </Link>
+
+            <Link to="/exchanges">
+              <HeaderNavBarLinks>Exchange</HeaderNavBarLinks>
+            </Link>
             <HeaderNavBarLinks>API</HeaderNavBarLinks>
           </NavBarContainerLinks>
         )}

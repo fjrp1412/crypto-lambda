@@ -3,11 +3,9 @@ const REQUEST_OPTIONS = {
   mode: 'cors',
   method: 'GET',
   'Accept-Encoding': 'gzip',
-  Authorization: `Bearer ${API_KEY}`,
-  'Access-Control-Allow-Origin': '*',
 };
 
-const getCoinsData = async ({ limit = 2000 }) => {
+const getCoinsData = async (limit = 100) => {
   const response = await fetch(
     `https://api.coincap.io/v2/assets?limit=${limit}`,
     REQUEST_OPTIONS
@@ -58,7 +56,18 @@ const getMarketsCoinData = async ({ id }) => {
   return data.data;
 };
 
+const getExchangesData = async () => {
+  const response = await fetch(
+    'https://api.coincap.io/v2/exchanges',
+    REQUEST_OPTIONS
+  );
+
+  const data = await response.json();
+  return data.data;
+};
+
 export {
+  getExchangesData,
   getCoinsData,
   getCoinData,
   getCoinHistory,
